@@ -1,27 +1,6 @@
-import {StyleSheet, Dimensions} from 'react-native';
-
-const windowWidth = Dimensions.get('window').width;
-const windowHeight = Dimensions.get('window').height;
+import {StyleSheet} from 'react-native';
 
 export default StyleSheet.create({
-  image_container: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#EDEDED',
-    marginTop: 10,
-    borderRadius: 10,
-  },
-  image: {
-    width: windowWidth / 2,
-    height: windowWidth / 2,
-    aspectRatio: 1,
-    resizeMode: 'contain',
-    marginVertical: 10,
-    borderRadius: 1000,
-    overflow: 'hidden',
-    borderWidth: 3,
-    borderColor: '#0079ff',
-  },
   container: {
     flex: 1,
     paddingHorizontal: 10,

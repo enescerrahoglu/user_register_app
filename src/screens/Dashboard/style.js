@@ -1,25 +1,25 @@
 import {StyleSheet, Dimensions} from 'react-native';
 
 const windowWidth = Dimensions.get('window').width;
-const windowHeight = Dimensions.get('window').height;
 
 export default StyleSheet.create({
   image_container: {
     justifyContent: 'center',
-    alignItems: 'center',
+    // alignItems: 'center',
+    flexDirection: 'column',
     backgroundColor: '#EDEDED',
     marginTop: 10,
     borderRadius: 10,
   },
   image: {
-    width: windowWidth / 2,
-    height: windowWidth / 2,
+    width: windowWidth / 5,
+    height: windowWidth / 5,
     aspectRatio: 1,
     resizeMode: 'contain',
-    marginVertical: 10,
+    marginRight: 10,
+    marginBottom: 10,
     borderRadius: 1000,
     overflow: 'hidden',
-    borderWidth: 3,
     borderColor: '#0079ff',
   },
   container: {
@@ -30,24 +30,8 @@ export default StyleSheet.create({
   contentContainer: {
     flexGrow: 1,
   },
-  dropDownPicker: {
+  informationContainer: {
     backgroundColor: '#EDEDED',
-    borderWidth: 0,
-    borderRadius: 10,
-    marginTop: 10,
-  },
-  dropDownContainerStyle: {
-    backgroundColor: '#EDEDED',
-    borderWidth: 0,
-    borderRadius: 10,
-    elevation: 10,
-    shadowColor: '#000000',
-    shadowOffset: {
-      width: 5,
-      height: 5,
-    },
-    shadowRadius: 5,
-    shadowOpacity: 1.0,
-    elevation: 10,
+    width: '95%',
   },
 });

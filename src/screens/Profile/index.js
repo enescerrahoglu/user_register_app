@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {
   SafeAreaView,
   ScrollView,
@@ -16,44 +16,31 @@ import ImagePicker from 'react-native-image-crop-picker';
 import DropDownPicker from 'react-native-dropdown-picker';
 import DatePicker from 'react-native-date-picker';
 import CheckBox from '@react-native-community/checkbox';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import styles from './style';
 
 export const ProfileScreen = ({route, navigation}) => {
-  const [selectedImage, setSelectedImage] = useState(null);
-  const showCustomToast = (message, type) => {
-    Toast.show({
-      type,
-      position: 'bottom',
-      text1: message,
-      visibilityTime: 3000,
-      autoHide: true,
-    });
-  };
-
-  const handleLogin = values => {
-    showCustomToast('Login successful', 'success');
-  };
-
-  const handleSelectImage = () => {
-    ImagePicker.openPicker({
-      width: 400,
-      height: 400,
-      cropping: true,
-    })
-      .then(image => {
-        console.log(image);
-        setSelectedImage(image.path);
-      })
-      .catch(error => {
-        setSelectedImage(null);
-      });
-  };
-  const defaultImageSource = require('../../assets/default_profile_image.png');
-
   const countriesData = route.params.countries.map(country => ({
-    label: country.name.official,
+    label: country.name.common,
     value: country.cca3,
   }));
+
+  const userData = route.params.userData;
+
+  useEffect(() => {
+    console.log('**********userData**********');
+    console.log(userData);
+    console.log('**********userData**********');
+
+    setValue2(userData !== null ? userData.gender : null);
+    setValue(userData !== null ? userData.country : null);
+    setSelectedImage(userData !== null ? userData.profilePhoto : null);
+    // setDate(userData !== null ? new Date(userData.dateOfBirth) : new Date());
+  }, [userData]);
+
+  const [selectedImage, setSelectedImage] = useState(null);
+  const [toggleCheckBox, setToggleCheckBox] = useState(false);
+  const defaultImageSource = require('../../assets/default_profile_image.png');
 
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState(null);
@@ -62,8 +49,8 @@ export const ProfileScreen = ({route, navigation}) => {
   const [open2, setOpen2] = useState(false);
   const [value2, setValue2] = useState(null);
   const [items2, setItems2] = useState([
-    {label: 'Woman', value: 'woman'},
-    {label: 'Man', value: 'man'},
+    {label: 'Male', value: 'male'},
+    {label: 'Female', value: 'female'},
   ]);
 
   const [date, setDate] = useState(new Date());
@@ -79,7 +66,66 @@ export const ProfileScreen = ({route, navigation}) => {
     }.${year}`;
   };
 
-  const [toggleCheckBox, setToggleCheckBox] = useState(false);
+  const showCustomToast = (message, type) => {
+    Toast.show({
+      type,
+      position: 'bottom',
+      text1: message,
+      visibilityTime: 3000,
+      autoHide: true,
+    });
+  };
+
+  const handleSelectImage = () => {
+    ImagePicker.openPicker({
+      width: 400,
+      height: 400,
+      cropping: true,
+      includeBase64: true,
+    })
+      .then(image => {
+        const imageData = 'data:image/jpeg;base64,' + image.data;
+        setSelectedImage(imageData);
+      })
+      .catch(error => {
+        setSelectedImage(null);
+      });
+  };
+
+  const saveProfile = async values => {
+    const {firstName, lastName, phoneNumber} = values;
+    const selectedCountry = items.find(item => item.value === value);
+    const selectedGender = items2.find(item => item.value === value2);
+
+    const idNumber = route.params.id;
+    const data = {
+      idNumber: idNumber,
+      firstName: firstName,
+      lastName: lastName,
+      phoneNumber: phoneNumber,
+      country: selectedCountry ? selectedCountry.value : '',
+      gender: selectedGender ? selectedGender.value : '',
+      dateOfBirth: date,
+      profilePhoto: selectedImage,
+    };
+
+    try {
+      const existingData = await AsyncStorage.getItem('@users');
+      const parsedExistingData = existingData ? JSON.parse(existingData) : {};
+      parsedExistingData[idNumber] = data;
+      const savedData = JSON.stringify(parsedExistingData);
+      await AsyncStorage.setItem('@users', savedData);
+      showCustomToast('Success', 'success');
+      console.log('Data saved to AsyncStorage with key:', idNumber);
+
+      navigation.navigate('ProfileWorkStatusScreen', {
+        userId: route.params.id,
+        userData: userData,
+      });
+    } catch (error) {
+      console.log('Error saving data to AsyncStorage:', error);
+    }
+  };
 
   return (
     <SafeAreaView style={styles.container}>
@@ -94,13 +140,18 @@ export const ProfileScreen = ({route, navigation}) => {
           </TouchableWithoutFeedback>
         </View>
         <Formik
-          initialValues={{firstName: '', lastName: ''}}
+          initialValues={{
+            firstName: userData !== null ? userData.firstName : null,
+            lastName: userData !== null ? userData.lastName : null,
+            phoneNumber: userData !== null ? userData.phoneNumber : null,
+          }}
           validateOnChange={false}
           validateOnBlur={false}
-          onSubmit={values => handleLogin(values)}
+          onSubmit={async values => await saveProfile(values)}
           validate={values => {
             const errors = {};
-            if (!values.firstName) {
+
+            if (values.firstName == null) {
               errors.firstName = 'First name is required';
               showCustomToast(errors.firstName, 'error');
             } else if (!values.lastName) {
@@ -162,13 +213,11 @@ export const ProfileScreen = ({route, navigation}) => {
                 setOpen={setOpen}
                 setValue={setValue}
                 setItems={setItems}
+                onOpen={() => setOpen2(false)}
                 listMode="SCROLLVIEW"
                 placeholder="Country"
                 style={styles.dropDownPicker}
-                dropDownContainerStyle={{
-                  borderWidth: 1,
-                  borderRadius: 10,
-                }}
+                dropDownContainerStyle={styles.dropDownContainerStyle}
                 zIndex={2000}
                 zIndexInverse={1000}
               />
@@ -204,13 +253,11 @@ export const ProfileScreen = ({route, navigation}) => {
                 setOpen={setOpen2}
                 setValue={setValue2}
                 setItems={setItems2}
+                onOpen={() => setOpen(false)}
                 listMode="SCROLLVIEW"
                 placeholder="Gender"
                 style={styles.dropDownPicker}
-                dropDownContainerStyle={{
-                  borderWidth: 1,
-                  borderRadius: 10,
-                }}
+                dropDownContainerStyle={styles.dropDownContainerStyle}
                 zIndex={1000}
                 zIndexInverse={2000}
               />
@@ -233,6 +280,7 @@ export const ProfileScreen = ({route, navigation}) => {
                   handleSubmit();
                   validateForm();
                 }}
+                marginBottom={10}
               />
             </>
           )}

@@ -3,7 +3,7 @@ import {TouchableOpacity, Text, View, StyleSheet} from 'react-native';
 
 class ButtonComponent extends React.Component {
   render() {
-    const {title, onPress, backgroundColor} = this.props;
+    const {title, onPress, backgroundColor, ...restProps} = this.props;
     const styles = StyleSheet.create({
       button: {
         borderRadius: 10,
@@ -22,7 +22,7 @@ class ButtonComponent extends React.Component {
 
     return (
       <TouchableOpacity activeOpacity={0.5} onPress={onPress}>
-        <View style={styles.button}>
+        <View style={styles.button} {...restProps}>
           <Text style={styles.title}>{title}</Text>
         </View>
       </TouchableOpacity>

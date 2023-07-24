@@ -43,7 +43,7 @@ const ProfileInfo = ({user}) => {
 
       <View
         style={{
-          borderWidth: 0.2,
+          borderWidth: 0.3,
           width: '100%',
           alignSelf: 'center',
           marginVertical: 10,

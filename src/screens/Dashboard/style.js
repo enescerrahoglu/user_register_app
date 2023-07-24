@@ -5,7 +5,6 @@ const windowWidth = Dimensions.get('window').width;
 export default StyleSheet.create({
   image_container: {
     justifyContent: 'center',
-    // alignItems: 'center',
     flexDirection: 'column',
     backgroundColor: '#EDEDED',
     marginTop: 10,
@@ -29,9 +28,5 @@ export default StyleSheet.create({
   },
   contentContainer: {
     flexGrow: 1,
-  },
-  informationContainer: {
-    backgroundColor: '#EDEDED',
-    width: '95%',
   },
 });

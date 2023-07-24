@@ -2,26 +2,23 @@ import React, {useEffect} from 'react';
 import {View, ActivityIndicator, StyleSheet} from 'react-native';
 import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import {fetchCountries, fetchProjects} from '../../services/apiService';
 
 export const IndicatorScreen = ({route, navigation}) => {
   var countries = null;
   var userData = null;
+  var projects = null;
   useEffect(() => {
     getUserData();
   }, []);
 
-  const fetchData = async () => {
-    try {
-      const response = await axios.get('https://restcountries.com/v3.1/all');
-      countries = response.data;
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
   const getUserData = async () => {
     try {
-      await fetchData();
+      const fetchedCountries = await fetchCountries();
+      countries = fetchedCountries;
+      const fetchedProjects = await fetchProjects();
+      projects = fetchedProjects;
+
       const data = await AsyncStorage.getItem('@users');
       if (data !== null) {
         const parsedData = JSON.parse(data);
@@ -33,6 +30,7 @@ export const IndicatorScreen = ({route, navigation}) => {
             screen: 'DashboardScreen',
             params: {
               userData: userData,
+              projects: projects.projects,
             },
           });
         } else {

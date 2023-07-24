@@ -1,12 +1,15 @@
 import React from 'react';
 import {SafeAreaView, StyleSheet} from 'react-native';
 import AppStack from './navigation/app-stack';
+import {ProjectProvider} from '../src/provider/ProjectContext';
 
 export default function App() {
   return (
-    <SafeAreaView style={styles.container}>
-      <AppStack />
-    </SafeAreaView>
+    <ProjectProvider>
+      <SafeAreaView style={styles.container}>
+        <AppStack />
+      </SafeAreaView>
+    </ProjectProvider>
   );
 }
 

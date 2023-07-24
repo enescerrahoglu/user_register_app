@@ -56,15 +56,6 @@ export const ProfileCompetenceScreen = ({route, navigation}) => {
         const updatedData = JSON.stringify(parsedData);
         await AsyncStorage.setItem('@users', updatedData);
 
-        // navigation.navigate('DashboardScreen', {
-        //   userData: JSON.stringify(parsedData[userId]),
-        // });
-
-        // navigation.navigate('IndicatorStack', {
-        //   screen: 'IndicatorScreen',
-        //   params: {id: userId},
-        // });
-
         navigateToIndicatorScreen();
       }
     } catch (error) {

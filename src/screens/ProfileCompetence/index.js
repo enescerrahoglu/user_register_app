@@ -133,7 +133,7 @@ export const ProfileCompetenceScreen = ({route, navigation}) => {
           {({handleChange, handleSubmit, values, errors, validateForm}) => (
             <>
               <TextInputComponent
-                placeholder="ID"
+                placeholder="ID Number"
                 value={userId}
                 editable={false}
               />

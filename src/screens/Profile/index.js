@@ -178,7 +178,7 @@ export const ProfileScreen = ({route, navigation}) => {
           {({handleChange, handleSubmit, values, errors, validateForm}) => (
             <>
               <TextInputComponent
-                placeholder="ID"
+                placeholder="ID Number"
                 value={route.params.id}
                 editable={false}
               />

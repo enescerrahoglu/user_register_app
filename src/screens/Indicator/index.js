@@ -27,7 +27,7 @@ export const IndicatorScreen = ({route, navigation}) => {
         if (userData !== null) {
           userData = JSON.stringify(userData);
           navigation.navigate('ProfileStack', {
-            screen: 'DashboardScreen',
+            screen: 'TabScreen',
             params: {
               userData: userData,
               projects: projects.projects,

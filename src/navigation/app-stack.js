@@ -4,6 +4,7 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import ProfileStack from './profile-stack';
 import IndicatorStack from './indicator-stack';
 import LoginStack from './login-stack';
+import TabStack from './tab-stack';
 
 const Stack = createNativeStackNavigator();
 
@@ -18,6 +19,7 @@ const AppStack = () => {
         <Stack.Screen name="IndicatorStack" component={IndicatorStack} />
         <Stack.Screen name="ProfileStack" component={ProfileStack} />
         <Stack.Screen name="LoginStack" component={LoginStack} />
+        <Stack.Screen name="TabStack" component={TabStack} />
       </Stack.Navigator>
     </NavigationContainer>
   );

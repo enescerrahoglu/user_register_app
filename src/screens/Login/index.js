@@ -49,7 +49,7 @@ export const LoginScreen = ({navigation}) => {
           {({handleChange, handleSubmit, values, errors, validateForm}) => (
             <>
               <TextInputComponent
-                placeholder="ID"
+                placeholder="ID Number"
                 onChangeText={handleChange('id')}
                 onBlur={() => validateForm()}
                 value={values.id}

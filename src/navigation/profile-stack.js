@@ -5,6 +5,7 @@ import {
   ProfileCompetenceScreen,
   ProfileWorkStatusScreen,
   DashboardScreen,
+  TabScreen,
 } from '../screens';
 
 const Stack = createNativeStackNavigator();
@@ -40,6 +41,15 @@ const ProfileStack = () => {
         }}
         name="DashboardScreen"
         component={DashboardScreen}
+      />
+      <Stack.Screen
+        options={{
+          title: 'TabScreen',
+          headerShown: false,
+          headerBackVisible: false,
+        }}
+        name="TabScreen"
+        component={TabScreen}
       />
     </Stack.Navigator>
   );

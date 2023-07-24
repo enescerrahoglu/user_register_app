@@ -6,7 +6,7 @@ class TextInputComponent extends React.Component {
     const {fontSize, maxLength = 1000, ...restProps} = this.props;
     const styles = StyleSheet.create({
       textInput: {
-        backgroundColor: '#EDEDED',
+        backgroundColor: '#e7e9ec',
         borderRadius: 10,
         paddingHorizontal: 10,
         marginTop: 10,

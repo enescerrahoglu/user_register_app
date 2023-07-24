@@ -1,0 +1,7 @@
+{
+    "projects":[
+        {"name": "Proje1", "description": "Description1"},
+        {"name": "Proje2", "description": "Description2"},
+        {"name": "Proje3", "description": "Description3"}
+    ]
+}

@@ -7,12 +7,10 @@ import ProjectContainer from '../../components/ProjectContainer';
 import ProjectContext from '../../provider/ProjectContext';
 
 export const DashboardScreen = ({route}) => {
-  const {userData} = route.params;
-
   useEffect(() => {}, []);
-
+  const {userData} = route.params;
   const user = JSON.parse(userData);
-  const {projects} = useContext(ProjectContext);
+  const {projects, deleteProject} = useContext(ProjectContext);
 
   return (
     <SafeAreaView style={styles.container}>
@@ -20,7 +18,18 @@ export const DashboardScreen = ({route}) => {
         <ProfileInfo user={user} />
         <Text style={{marginTop: 20, color: '#132143'}}>Projects</Text>
         {projects.map((project, index) => (
-          <ProjectContainer key={index} project={project} />
+          <ProjectContainer
+            key={index}
+            project={project}
+            onPress={() => {
+              console.log(index);
+              try {
+                deleteProject(index);
+              } catch (error) {
+                console.log(error);
+              }
+            }}
+          />
         ))}
         <View style={{marginBottom: 10}}></View>
       </ScrollView>

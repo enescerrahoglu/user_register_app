@@ -2,7 +2,7 @@
 
 Projeye ait ekran görüntülerini aşağıda bulabilirsiniz.
 
-.
+[![Watch the video](https://firebasestorage.googleapis.com/v0/b/paylash-app.appspot.com/o/user_register_app%2Fplay.png?alt=media&token=4fd226e4-07dc-46f2-bddc-e22a2c83a8f3)](https://firebasestorage.googleapis.com/v0/b/taskmallow-app.appspot.com/o/readme%2Fsprint2%2Fapp_usage.mp4?alt=media&token=f6ec8c09-a123-4b81-8a70-a3cbeb904204)
 <img src="https://firebasestorage.googleapis.com/v0/b/paylash-app.appspot.com/o/user_register_app%2FScreenshot_1690205902.png?alt=media&token=62b6ad43-b798-45f7-a53c-4366fda84f42" height="500">
 <img src="https://firebasestorage.googleapis.com/v0/b/paylash-app.appspot.com/o/user_register_app%2FScreenshot_1690224564.png?alt=media&token=9d7e1b63-6e5d-4201-825f-694b7e9b3789" height="500">
 <img src="https://firebasestorage.googleapis.com/v0/b/paylash-app.appspot.com/o/user_register_app%2FScreenshot_1690224573.png?alt=media&token=febbfb6b-3668-4aa7-b212-23ca9894f5e0" height="500">

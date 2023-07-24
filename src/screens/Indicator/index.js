@@ -1,6 +1,5 @@
 import React, {useEffect} from 'react';
 import {View, ActivityIndicator, StyleSheet} from 'react-native';
-import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {fetchCountries, fetchProjects} from '../../services/apiService';
 
@@ -24,6 +23,7 @@ export const IndicatorScreen = ({route, navigation}) => {
         const parsedData = JSON.parse(data);
         userData = parsedData[route.params.id];
         userData == undefined ? (userData = null) : null;
+        console.log(userData);
         if (userData !== null) {
           userData = JSON.stringify(userData);
           navigation.navigate('ProfileStack', {

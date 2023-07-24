@@ -3,6 +3,15 @@ import {View, Text, Image, StyleSheet, Dimensions} from 'react-native';
 
 const windowWidth = Dimensions.get('window').width;
 const defaultImageSource = require('../assets/default_profile_image.png');
+function formatDate(inputDate) {
+  const date = new Date(inputDate);
+  const day = date.getDate().toString().padStart(2, '0');
+  const month = (date.getMonth() + 1).toString().padStart(2, '0');
+  const year = date.getFullYear().toString();
+
+  return `${day}.${month}.${year}`;
+}
+
 const ProfileInfo = ({user}) => {
   return (
     <View style={styles.container}>
@@ -12,20 +21,24 @@ const ProfileInfo = ({user}) => {
         ) : (
           <Image source={defaultImageSource} style={styles.image} />
         )}
-        <View style={styles.informationContainer}>
+        <View>
           <Text style={{fontWeight: 'bold', fontSize: 20, color: '#132143'}}>
             {user.firstName} {user.lastName}
           </Text>
-          <Text style={{fontSize: 14}}>{user.phoneNumber}</Text>
-          <Text style={{fontSize: 14}}>{user.dateOfBirth}</Text>
+          <Text style={{fontSize: 14, color: '#424d69'}}>
+            {user.phoneNumber}
+          </Text>
+          <Text style={{fontSize: 14, color: '#424d69'}}>
+            {formatDate(user.dateOfBirth)}
+          </Text>
         </View>
       </View>
 
       <View style={{flexDirection: 'row'}}>
-        <Text style={{fontWeight: 'bold', fontSize: 18}}>
+        <Text style={{fontWeight: 'bold', fontSize: 18, color: '#424d69'}}>
           {user.workStatus}
         </Text>
-        <Text style={{fontSize: 18}}> ({user.job}) </Text>
+        <Text style={{fontSize: 18, color: '#717a8e'}}> ({user.job})</Text>
       </View>
 
       <View
@@ -34,7 +47,7 @@ const ProfileInfo = ({user}) => {
           width: '100%',
           alignSelf: 'center',
           marginVertical: 10,
-          backgroundColor: '#a1a6b4',
+          backgroundColor: '#424d69',
         }}
       />
 
@@ -42,12 +55,24 @@ const ProfileInfo = ({user}) => {
         style={{
           justifyContent: 'center',
         }}>
-        <Text>
-          {user.schoolName} ({user.educationLevel})
-        </Text>
-        <Text>
-          {user.departmentName} ({user.graduationYear})
-        </Text>
+        <View style={{flexDirection: 'row'}}>
+          <Text style={{fontWeight: 'bold', fontSize: 16, color: '#424d69'}}>
+            {user.schoolName}
+          </Text>
+          <Text style={{fontSize: 16, color: '#717a8e'}}>
+            {' '}
+            ({user.educationLevel})
+          </Text>
+        </View>
+        <View style={{flexDirection: 'row'}}>
+          <Text style={{fontWeight: 'bold', fontSize: 16, color: '#424d69'}}>
+            {user.departmentName}
+          </Text>
+          <Text style={{fontSize: 16, color: '#717a8e'}}>
+            {' '}
+            ({user.graduationYear})
+          </Text>
+        </View>
       </View>
     </View>
   );
@@ -73,7 +98,6 @@ const styles = StyleSheet.create({
   },
   contentContainer: {
     flexDirection: 'row',
-    alignItems: 'center',
   },
   informationContainer: {
     flexDirection: 'column',

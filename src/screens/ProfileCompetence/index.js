@@ -56,9 +56,16 @@ export const ProfileCompetenceScreen = ({route, navigation}) => {
         const updatedData = JSON.stringify(parsedData);
         await AsyncStorage.setItem('@users', updatedData);
 
-        navigation.navigate('DashboardScreen', {
-          userData: JSON.stringify(parsedData[userId]),
-        });
+        // navigation.navigate('DashboardScreen', {
+        //   userData: JSON.stringify(parsedData[userId]),
+        // });
+
+        // navigation.navigate('IndicatorStack', {
+        //   screen: 'IndicatorScreen',
+        //   params: {id: userId},
+        // });
+
+        navigateToIndicatorScreen();
       }
     } catch (error) {
       console.log('Error updating user data in AsyncStorage:', error);
@@ -85,6 +92,13 @@ export const ProfileCompetenceScreen = ({route, navigation}) => {
     } catch (error) {
       console.log('Error saving data to AsyncStorage:', error);
     }
+  };
+
+  const navigateToIndicatorScreen = () => {
+    navigation.reset({
+      index: 0,
+      routes: [{name: 'IndicatorScreen', params: {id: userId}}],
+    });
   };
 
   return (

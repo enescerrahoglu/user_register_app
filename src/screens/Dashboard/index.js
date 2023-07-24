@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {SafeAreaView, ScrollView, Text} from 'react-native';
+import {SafeAreaView, ScrollView, View, Text} from 'react-native';
 import Toast from 'react-native-toast-message';
 import styles from './style';
 import ProfileInfo from '../../components/ProfileInfo';
@@ -20,6 +20,7 @@ export const DashboardScreen = ({route, navigation}) => {
         {projects.map((project, index) => (
           <ProjectContainer key={index} project={project} />
         ))}
+        <View style={{marginBottom: 10}}></View>
       </ScrollView>
       <Toast />
     </SafeAreaView>

@@ -10,13 +10,13 @@ export default StyleSheet.create({
     flexGrow: 1,
   },
   dropDownPicker: {
-    backgroundColor: '#EDEDED',
+    backgroundColor: '#e7e9ec',
     borderWidth: 0,
     borderRadius: 10,
     marginTop: 10,
   },
   dropDownContainerStyle: {
-    backgroundColor: '#EDEDED',
+    backgroundColor: '#e7e9ec',
     borderWidth: 0,
     borderRadius: 10,
     elevation: 10,

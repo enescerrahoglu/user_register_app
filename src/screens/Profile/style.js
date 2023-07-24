@@ -7,7 +7,7 @@ export default StyleSheet.create({
   image_container: {
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#EDEDED',
+    backgroundColor: '#e7e9ec',
     marginTop: 10,
     borderRadius: 10,
   },
@@ -31,13 +31,13 @@ export default StyleSheet.create({
     flexGrow: 1,
   },
   dropDownPicker: {
-    backgroundColor: '#EDEDED',
+    backgroundColor: '#e7e9ec',
     borderWidth: 0,
     borderRadius: 10,
     marginTop: 10,
   },
   dropDownContainerStyle: {
-    backgroundColor: '#EDEDED',
+    backgroundColor: '#e7e9ec',
     borderWidth: 0,
     borderRadius: 10,
     elevation: 10,

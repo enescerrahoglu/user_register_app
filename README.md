@@ -1,4 +1,4 @@
-# Bu proje Baykar Teknoloji adına Mobil Uygulama Geliştirme Uzmanı işe alım sürecinde istenen case dahilinde geliştirilmiştir.
+# Bu proje Mobil Uygulama Geliştirme Uzmanı işe alım sürecinde talep edilen vaka kapsamında Baykar Teknoloji adına geliştirilmiştir.
 
 Projeye ait ekran kaydını ve ekran görüntülerini aşağıda bulabilirsiniz.
 

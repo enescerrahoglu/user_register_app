@@ -1,6 +1,6 @@
 import {NavigationContainer} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import {DashboardScreen, UserScreen} from '../../screens';
+import {DashboardScreen, ProjectsScreen, UserScreen} from '../../screens';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {View, Image} from 'react-native';
 
@@ -43,8 +43,27 @@ export const TabScreen = ({route}) => {
               </View>
             ),
           }}
-          initialParams={{userData: userData, projects: projects}}
+          initialParams={{userData: userData}}
           component={DashboardScreen}
+        />
+        <Tab.Screen
+          name="Projects"
+          options={{
+            title: 'Projects',
+            tabBarIcon: ({focused}) => (
+              <View>
+                <Image
+                  source={require('../../assets/projects.png')}
+                  resizeMode="contain"
+                  style={{
+                    width: 25,
+                    tintColor: focused ? '#0079ff' : '#b8bcc7',
+                  }}></Image>
+              </View>
+            ),
+          }}
+          initialParams={{userData: userData}}
+          component={ProjectsScreen}
         />
         <Tab.Screen
           name="User"
@@ -62,7 +81,7 @@ export const TabScreen = ({route}) => {
               </View>
             ),
           }}
-          initialParams={{userData: userData, projects: projects}}
+          initialParams={{userData: userData}}
           component={UserScreen}
         />
       </Tab.Navigator>

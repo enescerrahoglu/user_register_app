@@ -1,12 +1,15 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useContext} from 'react';
 import {View, ActivityIndicator, StyleSheet} from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {fetchCountries, fetchProjects} from '../../services/apiService';
+import ProjectContext from '../../provider/ProjectContext';
 
 export const IndicatorScreen = ({route, navigation}) => {
   var countries = null;
   var userData = null;
-  var projects = null;
+
+  const {projects, setProjects} = useContext(ProjectContext);
+
   useEffect(() => {
     getUserData();
   }, []);
@@ -16,7 +19,11 @@ export const IndicatorScreen = ({route, navigation}) => {
       const fetchedCountries = await fetchCountries();
       countries = fetchedCountries;
       const fetchedProjects = await fetchProjects();
-      projects = fetchedProjects;
+      {
+        fetchedProjects.projects.map(project =>
+          setProjects(prevProjects => [...prevProjects, project]),
+        );
+      }
 
       const data = await AsyncStorage.getItem('@users');
       if (data !== null) {
@@ -30,7 +37,6 @@ export const IndicatorScreen = ({route, navigation}) => {
             screen: 'TabScreen',
             params: {
               userData: userData,
-              projects: projects.projects,
             },
           });
         } else {

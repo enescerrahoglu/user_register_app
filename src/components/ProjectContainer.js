@@ -1,15 +1,24 @@
 import React from 'react';
-import {View, Text, StyleSheet, Dimensions} from 'react-native';
+import {TouchableOpacity, View, Text, StyleSheet, Image} from 'react-native';
 
-const windowWidth = Dimensions.get('window').width;
-const ProjectContainer = ({project}) => {
+const ProjectContainer = ({project, onPress}) => {
   return (
     <View style={styles.container}>
-      <View style={{flexDirection: 'row'}}>
+      <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
         <Text style={{fontWeight: 'bold', fontSize: 18, color: '#424d69'}}>
           {project.name}
         </Text>
-        <Text style={{fontSize: 18}}></Text>
+
+        <TouchableOpacity activeOpacity={0.5} onPress={onPress}>
+          <Image
+            source={require('../assets/trash.png')}
+            resizeMode="contain"
+            style={{
+              width: 25,
+              height: 25,
+            }}
+          />
+        </TouchableOpacity>
       </View>
 
       <View

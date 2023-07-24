@@ -1,16 +1,17 @@
 import React from 'react';
-import {StyleSheet, View, Image} from 'react-native';
+import {SafeAreaView, ScrollView, View} from 'react-native';
+import UserProfile from '../../components/UserProfile';
 import styles from './style';
 
-export const UserScreen = ({navigation}) => {
+export const UserScreen = ({route}) => {
+  const {userData} = route.params;
+  const user = JSON.parse(userData);
+
   return (
-    <View style={styles.container}>
-      <View style={styles.inputView}>
-        <Image
-          style={styles.image}
-          source={require('../../assets/person.png')}
-        />
-      </View>
-    </View>
+    <SafeAreaView style={styles.container}>
+      <ScrollView contentContainerStyle={styles.contentContainer}>
+        <UserProfile user={user} />
+      </ScrollView>
+    </SafeAreaView>
   );
 };

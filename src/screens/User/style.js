@@ -1,22 +1,32 @@
-import {StyleSheet} from 'react-native';
+import {StyleSheet, Dimensions} from 'react-native';
+
+const windowWidth = Dimensions.get('window').width;
 
 export default StyleSheet.create({
-  container: {
-    paddingHorizontal: 20,
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
+  image_container: {
     justifyContent: 'center',
+    flexDirection: 'column',
+    backgroundColor: '#EDEDED',
+    marginTop: 10,
+    borderRadius: 10,
   },
   image: {
-    width: '100%',
+    width: windowWidth / 5,
+    height: windowWidth / 5,
     aspectRatio: 1,
-    alignSelf: 'center',
+    resizeMode: 'contain',
+    marginRight: 10,
+    marginBottom: 10,
+    borderRadius: 1000,
+    overflow: 'hidden',
+    borderColor: '#0079ff',
   },
-  inputView: {
-    width: '100%',
-    height: 'auto',
-    justifyContent: 'center',
-    alignItems: 'stretch',
+  container: {
+    flex: 1,
+    paddingHorizontal: 10,
+    backgroundColor: '#fff',
+  },
+  contentContainer: {
+    flexGrow: 1,
   },
 });

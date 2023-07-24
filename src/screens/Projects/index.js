@@ -10,7 +10,7 @@ import ProjectContainer from '../../components/ProjectContainer';
 
 export const ProjectsScreen = ({route}) => {
   const {userData} = route.params;
-  const {projects, setProjects} = useContext(ProjectContext);
+  const {projects, setProjects, deleteProject} = useContext(ProjectContext);
 
   useEffect(() => {}, []);
 
@@ -93,7 +93,18 @@ export const ProjectsScreen = ({route}) => {
               />
               <Text style={{marginTop: 20, color: '#132143'}}>Projects</Text>
               {projects.map((project, index) => (
-                <ProjectContainer key={index} project={project} />
+                <ProjectContainer
+                  key={index}
+                  project={project}
+                  onPress={() => {
+                    console.log(index);
+                    try {
+                      deleteProject(index);
+                    } catch (error) {
+                      console.log(error);
+                    }
+                  }}
+                />
               ))}
               <View style={{marginBottom: 10}}></View>
             </>
